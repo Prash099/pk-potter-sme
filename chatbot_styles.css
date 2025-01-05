@@ -1,0 +1,42 @@
+/* Chat Row Container */
+.chat-row {
+    display: flex;
+    margin: 5px;
+    width: 100%;
+}
+
+/* Reverse the row direction for human messages */
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* Chat Bubble Styles */
+.chat-bubble {
+    font-family: "Source Sans Pro", sans-serif, "Segoe UI", "Roboto", sans-serif;
+    border: 1px solid transparent;
+    padding: 10px 15px;
+    margin: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* AI Chat Bubble */
+.ai-bubble {
+    background: white;
+    color: black;
+    border-radius: 10px;
+}
+
+/* Human Chat Bubble */
+.human-bubble {
+    background: linear-gradient(135deg, rgb(0, 178, 255) 0%, rgb(0, 106, 255) 100%);
+    color: white;
+    border-radius: 20px;
+}
+
+/* Chat Icon Styles */
+.chat-icon {
+    border-radius: 50%;
+    margin: 5px;
+}
