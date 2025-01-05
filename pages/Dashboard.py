@@ -12,31 +12,25 @@ from plot_functions.PostFrequencyAnalysis import PostFrequencyAnalysis
 from plot_functions.ImpressionsToReachRatioAnalysis import ImpressionsToReachRatioAnalysis
 from astrapy import DataAPIClient
 import pandas as pd
+from dotenv import load_dotenv
+import os
 
-# Initialize Astra DB Client
-client = DataAPIClient("AstraCS:yneBpwTqwQfWiOpctxkhmlyK:ad7734828392ef925f732b502d37a165877cd8d7bc518480e89e04c82b2594c2")
-db = client.get_database_by_api_endpoint(
-    "https://76715bec-7a1f-409d-bc03-c5fdfdc0ceb8-us-east-2.apps.astra.datastax.com"
-)
+client = DataAPIClient(os.getenv('ASTRA_DB_TOKEN'))
+db = client.get_database_by_api_endpoint(os.getenv("ASTRA_DB_ENDPOINT"))
 
-# Desired collection in Astra DB
-desired_collection = 'sm_engagement_data'
+desired_collection = os.getenv("ASTRA_DB_COLLECTION_NAME")
 
-# Fetch data from Astra DB collection
 collection = db.get_collection(desired_collection)
 documents = collection.find({})
 
 if documents:
-    # Convert documents to a pandas DataFrame
     df = pd.DataFrame(documents)
-    st.session_state.df = df  # Store DataFrame in session state
+    st.session_state.df = df
 else:
     st.write(f"No data found in collection '{desired_collection}'.")
 
-# Dashboard title
 st.title("Social Media Engagement Analytics Dashboard")
 
-# Plot options
 plot_options = [
     "Engagement Rate Over Time",
     "Engagement Breakdown by Post Type",
@@ -50,16 +44,13 @@ plot_options = [
     "Impressions-to-Reach Ratio Analysis"
 ]
 
-# Sidebar plot selection
 selected_plot = st.sidebar.radio("Select Plot to Display", plot_options)
 
-# Time granularity selection for time-based plots
 if selected_plot in ["Engagement Rate Over Time", "Post Frequency Analysis"]:
     time_granularity = st.sidebar.radio("Select Time Granularity", ["Daily", "Monthly", "Yearly"])
 else:
     time_granularity = None
 
-# Plotting logic based on selected plot
 if selected_plot == "Engagement Rate Over Time":
     if time_granularity:
         plotter = EngagementRateOverTime(df, time_granularity)
