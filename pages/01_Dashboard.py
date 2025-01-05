@@ -17,6 +17,9 @@ import os
 
 load_dotenv()
 
+st.set_page_config(page_title="PK - Potter - Social Media Engagement Analyser", page_icon="📊", layout="centered",menu_items={'Get Help': 'https://google.com'})
+st.set_option('client.toolbarMode',"Minimal")
+
 page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
