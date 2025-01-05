@@ -1,0 +1,8 @@
+python-dotenv
+streamlit
+streamlit_lottie
+pandas
+cassandra-driver
+astrapy
+plotly
+geopy
