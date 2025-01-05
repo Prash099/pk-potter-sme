@@ -17,6 +17,19 @@ import os
 
 load_dotenv()
 
+page_bg_img = """
+<style>
+[data-testid="stAppViewContainer"] {
+background-color: #e5e5f7;
+opacity: 0.8;
+background-image:  radial-gradient(#444cf7 1.1px, transparent 1.1px), radial-gradient(#444cf7 1.1px, #e5e5f7 1.1px);
+background-size: 44px 44px;
+background-position: 0 0,22px 22px;
+}
+</style>
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 client = DataAPIClient(os.getenv('ASTRA_DB_TOKEN'))
 db = client.get_database_by_api_endpoint(os.getenv("ASTRA_DB_ENDPOINT"))
 

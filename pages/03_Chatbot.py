@@ -6,8 +6,21 @@ import os
 
 load_dotenv()
 
+page_bg_img = """
+<style>
+[data-testid="stAppViewContainer"] {
+background-color: #e5e5f7;
+opacity: 0.8;
+background-image:  radial-gradient(#444cf7 1.1px, transparent 1.1px), radial-gradient(#444cf7 1.1px, #e5e5f7 1.1px);
+background-size: 44px 44px;
+background-position: 0 0,22px 22px;
+}
+</style>
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 def load_css():
-    with open("chatbot_styles.css", "r") as f:
+    with open("styles/chatbot_styles.css", "r") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
