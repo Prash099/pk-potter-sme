@@ -83,10 +83,10 @@ if st.button('Submit'):
 
             headers = {
                 'Content-Type': 'application/json',
-                'Authorization': os.getenv("LANGFLOW_AUTH_TOKEN")
+                'Authorization': st.secrets["LANGFLOW_AUTH_TOKEN"]
             }
 
-            api_url = os.getenv("LANGFLOW_REPORT_URL")
+            api_url = st.secrets["LANGFLOW_REPORT_URL"]
             response = requests.post(api_url, json=payload, headers=headers)
 
             if response.status_code == 200:

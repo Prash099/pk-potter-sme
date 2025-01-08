@@ -50,10 +50,10 @@ def send_to_langflow(message):
             "CombineText-qPiG8": {},
         },
     }
-    api_url = os.getenv("LANGFLOW_CHATBOT_URL")
+    api_url = st.secrets["LANGFLOW_CHATBOT_URL"]
     headers = {
         "Content-Type": "application/json",
-        "Authorization": os.getenv("LANGFLOW_AUTH_TOKEN"),
+        "Authorization": st.secrets["LANGFLOW_AUTH_TOKEN"],
     }
 
     response = requests.post(api_url, json=payload, headers=headers)
