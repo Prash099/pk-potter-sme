@@ -33,7 +33,7 @@ background-position: 0 0,22px 22px;
 """
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-client = DataAPIClient(os.getenv('ASTRA_DB_TOKEN'))
+client = DataAPIClient(st.secrets['ASTRA_DB_TOKEN'])
 db = client.get_database_by_api_endpoint(st.secrets["ASTRA_DB_ENDPOINT"])
 
 desired_collection = st.secrets["ASTRA_DB_COLLECTION_NAME"]
